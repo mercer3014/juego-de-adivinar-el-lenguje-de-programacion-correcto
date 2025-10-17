@@ -41,24 +41,27 @@ public class MainActivity extends AppCompatActivity {
         int p = r.nextInt(7);
         nombre.setText(vec[p]);
     }
-    public void procesar (View v){
+    public void procesar(View v){
         ImageView ib = (ImageView) v;
         if (ib.getTag().equals(nombre.getText())){
             correcto++;
-            Toast.makeText(this, "Correcto", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
             incorrecto++;
-            Toast.makeText(this, "Incorrecto", Toast.LENGTH_LONG).show();
         }
         bien.setText(String.valueOf(correcto));
         mal.setText(String.valueOf(incorrecto));
-        if (correcto== 9){
-            nombre.setText("Ganaste");
-        }else if (incorrecto == 9){
-            nombre.setText("Perdiste");
+        if (correcto >= 10){
+            nombre.setText(" Ganaste ");
+            reinicia();
+            return;
+        } else if (incorrecto >= 10){
+            nombre.setText("Perdiste ");
+            reinicia();
+            return;
         }
         generador();
     }
+
     void reinicia (){
         correcto = 0;
         incorrecto = 0 ;
